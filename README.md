@@ -20,5 +20,5 @@ A Simple handwriting Recognition model build using CNN-RNN layers with CTC loss 
   * Run the main.py file from the src folder directory
   `python main.py`
 
-
+**Citations to be added**
 
