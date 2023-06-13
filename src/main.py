@@ -1,4 +1,4 @@
-# import argparse
+import argparse
 import random
 import cv2
 import editdistance
