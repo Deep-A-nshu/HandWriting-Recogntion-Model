@@ -352,42 +352,43 @@ def infer(model, fnImg):
 def main():
     """ Main function """
     # Opptional command line args
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument(
-    #     "--train", help="train the neural network", action="store_true")
-    # parser.add_argument(
-    #     "--validate", help="validate the neural network", action="store_true")
-    # parser.add_argument(
-    #     "--wordbeamsearch", help="use word beam search instead of best path decoding", action="store_true")
-    # args = parser.parse_args()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--train", help="train the neural network", action="store_true")
+    parser.add_argument(
+        "--validate", help="validate the neural network", action="store_true")
+    parser.add_argument(
+        "--wordbeamsearch", help="use word beam search instead of best path decoding", action="store_true")
+    args = parser.parse_args()
 
     decoderType = DecoderType.BestPath
     input_label_file_path = "../data/"
-    print("<------------------------------ LOADING TRAINING DATA -------------------------->\n\n\n")
-    loader = DataLoader(input_label_file_path , Model.batchSize , Model.imgSize , Model.maxTextLen)
-    print("\n\n\n<------------------------------------- DATA LOADED -------------------------------->\n\n\n")
-    model = Model(loader.charList , loader.WordCharList , loader.corpus , decoderType)
-    train(model , loader)
+    # print("<------------------------------ LOADING TRAINING DATA -------------------------->\n\n\n")
+    # loader = DataLoader(input_label_file_path , Model.batchSize , Model.imgSize , Model.maxTextLen)
+    # print("\n\n\n<------------------------------------- DATA LOADED -------------------------------->\n\n\n")
+    # model = Model(loader.charList , loader.WordCharList , loader.corpus , decoderType)
+    # train(model , loader)
     # Train or validate on Cinnamon dataset
-    # if args.train or args.validate:
-    #     # Load training data, create TF model
-    #     loader = DataLoader(FilePaths.fnTrain, Model.batchSize,
-    #                         Model.imgSize, Model.maxTextLen, load_aug=True)
+    if args.train or args.validate:
+        # Load training data, create TF model
+        loader = DataLoader(input_label_file_path, Model.batchSize,
+                            Model.imgSize, Model.maxTextLen, load_aug=True)
 
-    #     # Execute training or validation
-    #     if args.train:
-    #         model = Model(loader.charList, decoderType)
-    #         train(model, loader)
-    #     elif args.validate:
-    #         model = Model(loader.charList, decoderType, mustRestore=False)
-    #         validate(model, loader)
+        # Execute training or validation
+        if args.train:
+            model = Model(loader.charList, decoderType)
+            train(model, loader)
+        elif args.validate:
+            model = Model(loader.charList, decoderType, mustRestore=False)
+            validate(model, loader)
 
     # Infer text on test image
-    # else:
-    #     print(open(FilePaths.fnAccuracy).read())
-    #     model = Model(open(FilePaths.fnCharList).read(),
-    #                   decoderType, mustRestore=False)
-    #     infer(model, FilePaths.fnInfer)
+    else:
+        print("<---------- THIS IS THE CUSTOM TEST PART.WILL BE UPDATED LATERRRR.--------->")
+        # print(open(FilePaths.fnAccuracy).read())
+        # model = Model(open(FilePaths.fnCharList).read(),
+        #               decoderType, mustRestore=False)
+        # infer(model, FilePaths.fnInfer)
 
 
 # def infer_by_web(path, option):
