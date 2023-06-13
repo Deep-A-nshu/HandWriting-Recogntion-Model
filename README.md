@@ -22,7 +22,9 @@ Bidirectional-Recurrent Neural Network(RNN)** which used **RMS Propagation Optim
   * Place this downloaded dataset in the **data folder**.
 * **Run the code**
   * Run the main.py file from the src folder directory
-  `python main.py`
+      * To train the model run `python main.py --train`
+      * To vaildate the model run `python main.py --validate`
+      * To run custom test run `python main.py`
 
 **Citations to be added**
 
