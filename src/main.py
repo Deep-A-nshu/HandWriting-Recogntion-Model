@@ -6,7 +6,7 @@ import numpy as np
 # import tensorflow as tf
 
 # from DataLoader import Batch, DataLoader, FilePaths
-from SamplePreprocessor import preprocessor, wer
+from Preprosessing import preprocessor, wer
 from Model import DecoderType, Model
 # from SpellChecker import correct_sentence
 
@@ -376,10 +376,10 @@ def main():
 
         # Execute training or validation
         if args.train:
-            model = Model(loader.charList, decoderType)
+            model = Model(loader.charList, loader.wordCharList , loader.corpus , decoderType)
             train(model, loader)
         elif args.validate:
-            model = Model(loader.charList, decoderType, mustRestore=False)
+            model = Model(loader.charList, loader.wordCharList , loader.corpus , decoderType, mustRestore=False)
             validate(model, loader)
 
     # Infer text on test image
